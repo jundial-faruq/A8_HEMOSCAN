@@ -294,7 +294,8 @@ namespace HemoScan
                 // Memanggil fungsi stok (Pastikan fungsi ini juga menggunakan koneksi dengan benar)
                 TampilDataStok();
 
-                
+                // Update Label total stok
+                UpdateTotalStok();
             }
             catch (Exception ex)
             {
