@@ -415,7 +415,7 @@ namespace HemoScan
 
                 if (dialog == DialogResult.Yes)
                 {
-                    // Ambil ID dari kolom "ID_Request"
+                    
                     string idReq = row.Cells["ID_Request"].Value.ToString();
                     ProsesDarah(idReq); // Memanggil fungsi proses (logika UPDATE status)
                 }
