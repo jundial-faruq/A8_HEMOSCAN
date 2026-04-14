@@ -136,7 +136,10 @@ namespace HemoScan
 
         }
 
-       
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
