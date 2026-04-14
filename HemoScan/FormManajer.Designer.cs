@@ -31,7 +31,7 @@
             this.lblTotalStok = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.dgvLaporan = new System.Windows.Forms.DataGridView();
-            this.lblRequestPending = new System.Windows.Forms.Label();
+            this.lblPermintaan = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLaporan)).BeginInit();
             this.SuspendLayout();
@@ -44,7 +44,6 @@
             this.lblTotalStok.Size = new System.Drawing.Size(127, 16);
             this.lblTotalStok.TabIndex = 1;
             this.lblTotalStok.Text = "Total Stok Global : 0";
-            this.lblTotalStok.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnRefresh
             // 
@@ -54,6 +53,7 @@
             this.btnRefresh.TabIndex = 2;
             this.btnRefresh.Text = "Refresh Data";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // dgvLaporan
             // 
@@ -64,15 +64,16 @@
             this.dgvLaporan.RowTemplate.Height = 24;
             this.dgvLaporan.Size = new System.Drawing.Size(709, 274);
             this.dgvLaporan.TabIndex = 0;
+            this.dgvLaporan.Click += new System.EventHandler(this.FormManajer_Load);
             // 
-            // lblRequestPending
+            // lblPermintaan
             // 
-            this.lblRequestPending.AutoSize = true;
-            this.lblRequestPending.Location = new System.Drawing.Point(39, 377);
-            this.lblRequestPending.Name = "lblRequestPending";
-            this.lblRequestPending.Size = new System.Drawing.Size(157, 16);
-            this.lblRequestPending.TabIndex = 3;
-            this.lblRequestPending.Text = "Permintaan Menunggu : 0";
+            this.lblPermintaan.AutoSize = true;
+            this.lblPermintaan.Location = new System.Drawing.Point(39, 377);
+            this.lblPermintaan.Name = "lblPermintaan";
+            this.lblPermintaan.Size = new System.Drawing.Size(157, 16);
+            this.lblPermintaan.TabIndex = 3;
+            this.lblPermintaan.Text = "Permintaan Menunggu : 0";
             // 
             // label1
             // 
@@ -84,17 +85,17 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Laporan Manajer";
             // 
-            // FromManajer
+            // FormManajer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblRequestPending);
+            this.Controls.Add(this.lblPermintaan);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.lblTotalStok);
             this.Controls.Add(this.dgvLaporan);
-            this.Name = "FromManajer";
+            this.Name = "FormManajer";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dgvLaporan)).EndInit();
             this.ResumeLayout(false);
@@ -106,7 +107,7 @@
         private System.Windows.Forms.Label lblTotalStok;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridView dgvLaporan;
-        private System.Windows.Forms.Label lblRequestPending;
+        private System.Windows.Forms.Label lblPermintaan;
         private System.Windows.Forms.Label label1;
     }
 }
