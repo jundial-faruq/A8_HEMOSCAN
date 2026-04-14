@@ -45,8 +45,8 @@
             this.dgvDarah = new System.Windows.Forms.DataGridView();
             this.lblStatus = new System.Windows.Forms.Label();
             this.cmbGol = new System.Windows.Forms.ComboBox();
-            this.dgvRequestAdmin = new System.Windows.Forms.DataGridView();
             this.btnProses = new System.Windows.Forms.Button();
+            this.dgvRequestAdmin = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDarah)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRequestAdmin)).BeginInit();
             this.SuspendLayout();
@@ -213,17 +213,6 @@
             this.cmbGol.Size = new System.Drawing.Size(121, 24);
             this.cmbGol.TabIndex = 24;
             // 
-            // dgvRequestAdmin
-            // 
-            this.dgvRequestAdmin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRequestAdmin.Location = new System.Drawing.Point(444, 52);
-            this.dgvRequestAdmin.Name = "dgvRequestAdmin";
-            this.dgvRequestAdmin.RowHeadersWidth = 51;
-            this.dgvRequestAdmin.RowTemplate.Height = 24;
-            this.dgvRequestAdmin.Size = new System.Drawing.Size(287, 150);
-            this.dgvRequestAdmin.TabIndex = 25;
-            this.dgvRequestAdmin.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
             // btnProses
             // 
             this.btnProses.Location = new System.Drawing.Point(656, 209);
@@ -234,13 +223,24 @@
             this.btnProses.UseVisualStyleBackColor = true;
             this.btnProses.Click += new System.EventHandler(this.btnProses_Click);
             // 
+            // dgvRequestAdmin
+            // 
+            this.dgvRequestAdmin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRequestAdmin.Location = new System.Drawing.Point(466, 53);
+            this.dgvRequestAdmin.Name = "dgvRequestAdmin";
+            this.dgvRequestAdmin.RowHeadersWidth = 51;
+            this.dgvRequestAdmin.RowTemplate.Height = 24;
+            this.dgvRequestAdmin.Size = new System.Drawing.Size(265, 150);
+            this.dgvRequestAdmin.TabIndex = 27;
+            this.dgvRequestAdmin.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
             // FormAdminPMI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnProses);
             this.Controls.Add(this.dgvRequestAdmin);
+            this.Controls.Add(this.btnProses);
             this.Controls.Add(this.cmbGol);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.dgvDarah);
@@ -286,8 +286,8 @@
         private System.Windows.Forms.DataGridView dgvDarah;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ComboBox cmbGol;
-        private System.Windows.Forms.DataGridView dgvRequestAdmin;
         private System.Windows.Forms.Button btnProses;
+        private System.Windows.Forms.DataGridView dgvRequestAdmin;
     }
 }
 
