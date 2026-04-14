@@ -318,8 +318,7 @@ namespace HemoScan
                 int total = Convert.ToInt32(cmdCount.ExecuteScalar());
                 lblStatus.Text = "Total Stok Kantong: " + total;
             }
-            catch { /* Biarkan kosong agar tidak mengganggu load */ }
-            finally { conn.Close(); }
+            
         }
 
         // Fungsi pembantu agar kode Load di atas tetap rapi
