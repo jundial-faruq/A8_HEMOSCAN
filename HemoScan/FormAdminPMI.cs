@@ -50,6 +50,9 @@ namespace HemoScan
             {
                 MessageBox.Show("Gagal tampil data: " + ex.Message);
             }
+            TampilDataStok();      // Mengisi tabel stok (bawah)
+            TampilRequestMasuk();  // Mengisi tabel request (kanan)
+            UpdateTotalStok();     // Memperbarui angka total stok
         }
 
 
@@ -82,6 +85,7 @@ namespace HemoScan
                 MessageBox.Show("Field Rhesus tidak boleh kosong!");
                 return;
             }
+            TampilRequestMasuk();
             // ... sisa kode kamu ...
         }
 
@@ -205,30 +209,29 @@ namespace HemoScan
         }
 
         // Fungsi untuk menarik data dari Tabel_Request ke DataGridView Admin
+        // Fungsi untuk menarik data dari Tabel_Request ke DataGridView Admin
         private void TampilRequestMasuk()
         {
             try
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                // Menampilkan permintaan yang statusnya masih 'Pending' (baru masuk)
-                string query = "SELECT * FROM Tabel_Request WHERE Status_Permintaan = 'Pending' ORDER BY Tanggal_Request DESC";
-
+                // Mengambil data yang statusnya 'Pending' dari database
+                string query = "SELECT * FROM Tabel_Request WHERE Status_Permintaan = 'Pending'";
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
+                // Menampilkan data ke GridView kanan
                 dgvRequestAdmin.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal memuat request: " + ex.Message);
+                MessageBox.Show("Gagal memuat data request: " + ex.Message);
             }
-            finally
-            {
-                conn.Close();
-            }
+            finally { conn.Close(); }
         }
+        
 
         private void btnProses_Click(object sender, EventArgs e)
         {
@@ -274,31 +277,49 @@ namespace HemoScan
         {
             try
             {
-                // 1. Cek Koneksi Database
-                if (conn.State == ConnectionState.Closed) conn.Open();
+                // 1. Pastikan koneksi bersih
+                if (conn.State == ConnectionState.Open) conn.Close();
+                conn.Open();
 
-                // 2. Setup ComboBox (Pindahkan isi dari Form1_Load ke sini)
+                // 2. Setup ComboBox (Hanya jika belum ada isinya)
                 if (cmbGol.Items.Count == 0)
                 {
                     cmbGol.Items.AddRange(new string[] { "A", "B", "AB", "O" });
                     cmbGol.SelectedIndex = 0;
                 }
 
-                // 3. Load Data ke Semua DataGridView (Otomatis saat buka form)
-                TampilDataStok();     // Memanggil dgvDarah
-                TampilRequestMasuk(); // Memanggil dgvRequestAdmin
+                // 3. Panggil data (Urutan dibalik untuk memastikan Request prioritas)
+                TampilRequestMasuk();
 
-                // Optional: Beri tahu koneksi aman
-                // MessageBox.Show("Koneksi Berhasil!");
+                // Memanggil fungsi stok (Pastikan fungsi ini juga menggunakan koneksi dengan benar)
+                TampilDataStok();
+
+                // Update Label total stok
+                UpdateTotalStok();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal saat memuat data: " + ex.Message);
+                MessageBox.Show("Terjadi kesalahan saat memuat form: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                conn.Close();
+                // Jangan lupa tutup koneksi agar tidak membengkak di memory
+                if (conn.State == ConnectionState.Open) conn.Close();
             }
+        }
+
+        private void UpdateTotalStok()
+        {
+            try
+            {
+                if (conn.State == ConnectionState.Closed) conn.Open();
+                string countQuery = "SELECT COUNT(*) FROM Tabel_Kantong_Darah";
+                SqlCommand cmdCount = new SqlCommand(countQuery, conn);
+                int total = Convert.ToInt32(cmdCount.ExecuteScalar());
+                lblStatus.Text = "Total Stok Kantong: " + total;
+            }
+            catch { /* Biarkan kosong agar tidak mengganggu load */ }
+            finally { conn.Close(); }
         }
 
         // Fungsi pembantu agar kode Load di atas tetap rapi
