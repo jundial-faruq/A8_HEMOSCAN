@@ -270,9 +270,7 @@ namespace HemoScan
             }
         }
 
-        // ============================================================
-        // SATU-SATUNYA FUNGSI LOAD (Gantikan semua Load lama dengan ini)
-        // ============================================================
+
         private void FormAdminPMI_Load(object sender, EventArgs e)
         {
             try
