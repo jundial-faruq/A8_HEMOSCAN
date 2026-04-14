@@ -322,11 +322,24 @@ namespace HemoScan
             finally { conn.Close(); }
         }
 
-
+        // Fungsi pembantu agar kode Load di atas tetap rapi
+        private void TampilDataStok()
+        {
+            try
+            {
+                if (conn.State == ConnectionState.Closed) conn.Open();
+                string query = "SELECT * FROM Tabel_Kantong_Darah";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgvDarah.DataSource = dt;
+            }
+            catch { /* biarkan kosong jika tidak ingin popup terus */ }
+        }
 
 
         // Panggil fungsi di bawah ini saat form loading
-        
+
 
 
         private void label1_Click(object sender, EventArgs e)
